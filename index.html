@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Kodeks - Nearshore IT & Cybersecurity">
 <meta name="twitter:description" content="Managed IT and cybersecurity from Bosnia and Herzegovina. EU-aligned, English-first, 50–70% lower cost than Western MSPs.">
 <meta name="twitter:image" content="https://kodeksintlt.netlify.app/og-image.png">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23003366'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>K</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='9' r='2' fill='%234a7bb7'/><rect x='10' y='13.5' width='12' height='3' rx='1.5' fill='%234a7bb7'/><rect x='5' y='19.5' width='22' height='3' rx='1.5' fill='%234a7bb7'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1066,51 +1066,58 @@ input[type="range"]::-moz-range-thumb {
 .vendors { text-align: center; }
 .vendors-header { max-width: 700px; margin: 0 auto 48px; }
 .vendors-header .subhead { margin: 20px auto 0; }
-.vendor-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto 24px;
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+  padding: 24px 0;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-.vendor-cell {
-  aspect-ratio: 2 / 1;
+.marquee-track {
   display: flex;
+  gap: 80px;
+  width: max-content;
   align-items: center;
-  justify-content: center;
-  padding: 24px;
-  transition: transform 200ms ease;
 }
-.vendor-cell:hover {
-  transform: translateY(-2px);
+.marquee-track.scroll-left {
+  animation: marquee-scroll-left 50s linear infinite;
 }
-.vendor-cell img {
-  max-height: 36px;
-  max-width: 140px;
+.marquee-track.scroll-right {
+  animation: marquee-scroll-right 50s linear infinite;
+}
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-scroll-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.marquee-logo {
+  flex-shrink: 0;
+  height: 48px;
   width: auto;
-  display: block;
+  max-width: 160px;
   object-fit: contain;
   filter: grayscale(100%) brightness(0.4) contrast(1.2) opacity(0.55);
-  transition: filter 250ms ease;
 }
-.vendor-cell img.logo-mark {
-  max-height: 52px;
-  max-width: 60px;
-}
-.logo-blend {
+.marquee-logo.logo-blend {
   mix-blend-mode: multiply;
 }
-.vendor-cell.text-pill {
-  color: var(--navy);
-  font-size: 15px;
-  font-weight: 600;
-}
-@media (max-width: 1024px) {
-  .vendor-grid { grid-template-columns: repeat(3, 1fr); }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track.scroll-left,
+  .marquee-track.scroll-right {
+    animation: none;
+    transform: translateX(-25%);
+  }
 }
 @media (max-width: 640px) {
-  .vendor-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .vendor-cell { padding: 16px; }
+  .marquee-track { gap: 56px; }
+  .marquee-logo { height: 36px; max-width: 120px; }
 }
 .vendor-note {
   font-size: 12px;
@@ -1565,20 +1572,20 @@ footer {
     <span class="eyebrow">AT A GLANCE</span>
     <div class="stats-grid">
       <div class="stat-item">
-        <div class="stat-number">500+</div>
-        <div class="stat-label">Active clients across BiH, EU, and beyond</div>
+        <div class="stat-number">30-min</div>
+        <div class="stat-label">Initial response SLA on critical P1 incidents, 24/7</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">250+</div>
-        <div class="stat-label">Infrastructure and security projects delivered</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Years operating without a single year of disruption</div>
+        <div class="stat-number">120+</div>
+        <div class="stat-label">Years of collective engineering expertise on staff</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">50+</div>
         <div class="stat-label">Security and monitoring tools in active use</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">14+</div>
+        <div class="stat-label">Certified vendor partnerships across the stack</div>
       </div>
     </div>
   </div>
@@ -1915,23 +1922,46 @@ footer {
       <span class="eyebrow">DIRECT PARTNERSHIPS WITH GLOBAL ICT MANUFACTURERS</span>
       <p class="subhead">Premium-tier vendor agreements that give our clients first-line support channels, latest firmware, and direct escalation.</p>
     </div>
-    <div class="vendor-grid">
-      <div class="vendor-cell"><img src="https://cdn.simpleicons.org/dell/6B7280" alt="Dell" loading="lazy" class="logo-mark"></div>
-      <div class="vendor-cell"><img src="logos/lenovo.svg" alt="Lenovo" loading="lazy" class="logo-blend"></div>
-      <div class="vendor-cell"><img src="logos/hp.svg" alt="HP" loading="lazy" class="logo-mark"></div>
-      <div class="vendor-cell"><img src="logos/hpe.png" alt="HPE" loading="lazy"></div>
-      <div class="vendor-cell"><img src="logos/ibm.svg" alt="IBM" loading="lazy"></div>
-      <div class="vendor-cell"><img src="https://cdn.simpleicons.org/cisco/6B7280" alt="Cisco" loading="lazy"></div>
-      <div class="vendor-cell"><img src="logos/aruba.svg" alt="Aruba" loading="lazy"></div>
-      <div class="vendor-cell"><img src="https://cdn.simpleicons.org/fortinet/6B7280" alt="Fortinet" loading="lazy"></div>
-      <div class="vendor-cell"><img src="logos/microsoft.svg" alt="Microsoft" loading="lazy" class="logo-mark"></div>
-      <div class="vendor-cell"><img src="logos/veeam.svg" alt="Veeam" loading="lazy" class="logo-blend"></div>
-      <div class="vendor-cell"><img src="https://cdn.simpleicons.org/vmware/6B7280" alt="VMware" loading="lazy" class="logo-mark"></div>
-      <div class="vendor-cell"><img src="logos/sentinelone.svg" alt="SentinelOne" loading="lazy"></div>
-      <div class="vendor-cell"><img src="logos/eset.png" alt="ESET" loading="lazy" class="logo-blend"></div>
-      <div class="vendor-cell"><img src="logos/synology.png" alt="Synology" loading="lazy"></div>
-      <div class="vendor-cell"><img src="https://cdn.simpleicons.org/ubiquiti/6B7280" alt="Ubiquiti" loading="lazy" class="logo-mark"></div>
-      <div class="vendor-cell"><img src="logos/grandstream.webp" alt="Grandstream" loading="lazy"></div>
+    <div class="marquee-row">
+      <div class="marquee-track scroll-left">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/dell/6B7280" alt="Dell" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/lenovo.svg" alt="Lenovo" loading="lazy">
+        <img class="marquee-logo" src="logos/hp.svg" alt="HP" loading="lazy">
+        <img class="marquee-logo" src="logos/hpe.png" alt="HPE" loading="lazy">
+        <img class="marquee-logo" src="logos/ibm.svg" alt="IBM" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/cisco/6B7280" alt="Cisco" loading="lazy">
+        <img class="marquee-logo" src="logos/aruba.svg" alt="Aruba" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/fortinet/6B7280" alt="Fortinet" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/dell/6B7280" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/lenovo.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/hp.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/hpe.png" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/ibm.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/cisco/6B7280" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/aruba.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/fortinet/6B7280" alt="" aria-hidden="true" loading="lazy">
+      </div>
+    </div>
+
+    <div class="marquee-row" style="margin-top: 24px;">
+      <div class="marquee-track scroll-right">
+        <img class="marquee-logo" src="logos/microsoft.svg" alt="Microsoft" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/veeam.svg" alt="Veeam" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/vmware/6B7280" alt="VMware" loading="lazy">
+        <img class="marquee-logo" src="logos/sentinelone.svg" alt="SentinelOne" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/eset.png" alt="ESET" loading="lazy">
+        <img class="marquee-logo" src="logos/synology.png" alt="Synology" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/ubiquiti/6B7280" alt="Ubiquiti" loading="lazy">
+        <img class="marquee-logo" src="logos/grandstream.webp" alt="Grandstream" loading="lazy">
+        <img class="marquee-logo" src="logos/microsoft.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/veeam.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/vmware/6B7280" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/sentinelone.svg" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo logo-blend" src="logos/eset.png" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/synology.png" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="https://cdn.simpleicons.org/ubiquiti/6B7280" alt="" aria-hidden="true" loading="lazy">
+        <img class="marquee-logo" src="logos/grandstream.webp" alt="" aria-hidden="true" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
