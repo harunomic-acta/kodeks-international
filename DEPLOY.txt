@@ -1,0 +1,57 @@
+KODEKS LANDING - DEPLOY INSTRUCTIONS
+=====================================
+
+1. UPLOAD
+   Drop all of these files into the same folder where index.html will be served:
+
+     index.html
+     styles.css
+     og-image.png
+     favicon.ico
+     apple-touch-icon.png
+     robots.txt
+     sitemap.xml
+     logos/   (the entire folder, with all vendor logos inside)
+
+   The folder structure must stay flat exactly as in this zip. Do not move
+   anything into subfolders.
+
+
+2. UPDATE THE PAGE URL (if the page is NOT at kodeks.ba root)
+
+   The HTML and sitemap currently reference https://kodeks.ba/ as the page URL.
+   If the page will actually live at a subpath, e.g. https://kodeks.ba/en/,
+   do this find/replace in TWO files before going live:
+
+     index.html     : https://kodeks.ba/   ->   https://kodeks.ba/en/
+     sitemap.xml    : https://kodeks.ba/   ->   https://kodeks.ba/en/
+
+   Replace "en" with whatever the actual subpath is. The trailing slash matters.
+
+   This updates: canonical link, og:url, og:image, twitter:image, JSON-LD @id
+   and url fields, and the sitemap URL. All in one find/replace pass.
+
+
+3. ROBOTS.TXT AND SITEMAP
+
+   robots.txt and sitemap.xml MUST sit at the kodeks.ba domain root
+   (https://kodeks.ba/robots.txt and https://kodeks.ba/sitemap.xml), not
+   inside the subpath folder. Search engines only look for them at the root.
+
+   If kodeks.ba already has a robots.txt at the root, MERGE the new sitemap
+   line into it instead of overwriting.
+
+
+4. VERIFY AFTER DEPLOY
+
+   - Open the live URL, check page renders correctly.
+   - Paste the live URL into https://www.linkedin.com/post-inspector/ and
+     confirm the English "KODEKS / NEARSHORE IT & CYBERSECURITY" preview
+     image loads.
+   - Open https://search.google.com/test/rich-results and paste the URL,
+     confirm Organization, LocalBusiness, and Service schemas are detected
+     with no errors.
+
+
+CONTACT
+If anything is unclear, message back before deploying.
