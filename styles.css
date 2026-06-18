@@ -1757,3 +1757,11 @@ footer {
   .faq-tabs::-webkit-scrollbar { display: none; }
   .faq-tab { flex: 0 0 auto; white-space: nowrap; }
 }
+
+/* Temporary fill-in markers for the CEO/team (blue, for screenshot review) */
+.faq-todo {
+  color: #1d4ed8;
+  font-weight: 700;
+  background: rgba(29, 78, 216, 0.08);
+  padding: 1px 4px;
+}
