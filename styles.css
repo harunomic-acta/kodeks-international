@@ -1094,6 +1094,8 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 640px) {
   .marquee-track { gap: 56px; }
   .marquee-logo { height: 36px; max-width: 120px; }
+  .marquee-track.scroll-left { animation-duration: 28s; }
+  .marquee-track.scroll-right { animation-duration: 28s; }
 }
 .vendor-note {
   font-size: 12px;
