@@ -933,6 +933,12 @@ input[type="range"]::-moz-range-thumb {
   max-width: 640px;
   line-height: 1.5;
 }
+.pentest-cta-br,
+.book-contact-br { display: none; }
+@media (max-width: 768px) {
+  .pentest-cta-br,
+  .book-contact-br { display: inline; }
+}
 
 @media (max-width: 1024px) {
   .phases { grid-template-columns: 1fr; }
