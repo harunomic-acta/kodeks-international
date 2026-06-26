@@ -53,5 +53,6 @@ KODEKS LANDING - DEPLOY INSTRUCTIONS
      with no errors.
 
 
-CONTACT
-If anything is unclear, message back before deploying.
+NOTES
+This is a static page with no build step and no dependencies. If anything is
+unclear, confirm the target URL and folder location before going live.
